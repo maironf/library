@@ -32,4 +32,31 @@ public class LivroService {
 		categoriaService.findById(id_cat);
 		return repository.findAllbyCategoria(id_cat);
 	}
+
+	public Livro update(Integer id, Livro obj) {
+		Livro newObj = findById(id);
+		updateData(newObj,obj);
+		return repository.save(newObj);
+	}
+
+	private void updateData(Livro newObj, Livro obj) {
+		// TODO Auto-generated method stub
+		newObj.setTitulo(obj.getTitulo());
+		newObj.setNome_autor(obj.getNome_autor());
+		newObj.setTexto(obj.getTexto());
+	}
+
+	public Livro create(Integer id_cat, Livro obj) {
+		obj.setId(null);
+		Categoria cat = categoriaService.findById(id_cat);
+		obj.setCategoria(cat);
+		return repository.save(obj);
+	}
+
+	public void delete(Integer id) {
+		Livro obj = findById(id);
+		repository.delete(obj);
+	}
+	
+	
 }

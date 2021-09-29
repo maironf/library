@@ -15,7 +15,7 @@ import com.mairo.bookstore.domain.Livro;
 @Repository
 public interface LivroRepository extends JpaRepository<Livro, Integer>{
 
-	@Query("SELECT obj FROM Livro obj WHERE obj_categoria.id = id_cat ORDER BY titulo")
+	@Query("SELECT obj FROM Livro obj WHERE obj.categoria.id = id_cat ORDER BY titulo")
 	List<Livro> findAllbyCategoria(@Param(value="id_cat")Integer id_cat); //<classe, tipo primitivo da dossa classe Livro>
 
 }
